@@ -9,6 +9,12 @@ plugins {
 dependencies {
     implementation("org.apache.commons:commons-text")
     implementation(project(":utilities"))
+    implementation("org.springframework.boot:spring-boot-starter-web:3.2.4")
+
+}
+
+dependencyLocking {
+    lockMode = LockMode.STRICT
 }
 
 application {
