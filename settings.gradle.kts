@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "test"
-include("app")
+include("app", "list", "utilities")
