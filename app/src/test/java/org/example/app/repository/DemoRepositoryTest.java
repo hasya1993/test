@@ -10,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import java.time.LocalDateTime;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
@@ -22,18 +24,26 @@ public class DemoRepositoryTest {
 
     @Test
     public void testEntityWithIdOneExists() {
-        Demo demo = demoRepository.findById(1L).orElse(null);
-        assertThat(demo).isNotNull();
+        assertThat(demoRepository.findById(1L))
+                .isPresent()
+                .get()
+                .satisfies(
+                        demo -> assertThat(demo.getName()).isEqualTo("Sasha"),
+                        demo -> assertThat(demo.getCreatedAt()).isNotNull());
     }
 
     @Test
     public void testCreateAndGet() {
         Demo demo = new Demo();
         demo.setName("Test");
+        demo.setCreatedAt(LocalDateTime.now());
         demoRepository.save(demo);
 
-        Demo createDemo = demoRepository.findById(demo.getId()).orElse(null);
-        assertThat(createDemo).isNotNull();
-        assertThat(createDemo.getName()).isEqualTo("Test");
+        assertThat(demoRepository.findById(demo.getId()))
+                .isPresent()
+                .get()
+                .satisfies(
+                        createDemo -> assertThat(createDemo.getName()).isEqualTo("Test"),
+                        createDemo -> assertThat(createDemo.getCreatedAt()).isNotNull());
     }
 }

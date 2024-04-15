@@ -12,6 +12,7 @@ dependencies {
     implementation("org.springframework.data:spring-data-relational:3.2.4")
     implementation("org.flywaydb:flyway-core:10.11.0")
     compileOnly("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
     runtimeOnly("org.postgresql:postgresql:42.7.3")
     runtimeOnly("org.flywaydb:flyway-database-postgresql:10.11.0")
     testImplementation("org.testcontainers:postgresql:1.19.7")
