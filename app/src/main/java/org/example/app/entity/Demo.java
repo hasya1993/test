@@ -2,10 +2,7 @@ package org.example.app.entity;
 
 import lombok.*;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.annotation.ReadOnlyProperty;
-import org.springframework.data.relational.core.mapping.Table;
-import org.springframework.data.relational.core.mapping.Column;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -22,14 +19,13 @@ public class Demo {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "demo_seq")
     private Long id;
 
-    @Column("name")
+    @Column(name = "name")
     private String name;
 
-    @ReadOnlyProperty
-    @Column("created_at")
+    @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column("updated_at")
-    @LastModifiedDate
+    @Column(name = "updated_at", insertable = false)
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 }

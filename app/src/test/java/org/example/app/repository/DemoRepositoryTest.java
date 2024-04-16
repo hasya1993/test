@@ -1,5 +1,7 @@
 package org.example.app.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.example.app.PostgresTestContainer;
 import org.example.app.TestApplication;
 import org.example.app.entity.Demo;
@@ -10,8 +12,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import java.time.LocalDateTime;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
@@ -21,6 +21,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DemoRepositoryTest {
     @Autowired
     private DemoRepository demoRepository;
+
+    @PersistenceContext
+    EntityManager em;
 
     @Test
     public void testEntityWithIdOneExists() {
@@ -36,8 +39,10 @@ public class DemoRepositoryTest {
     public void testCreateAndGet() {
         Demo demo = new Demo();
         demo.setName("Test");
-        demo.setCreatedAt(LocalDateTime.now());
         demoRepository.save(demo);
+
+        em.flush();
+        em.clear();
 
         assertThat(demoRepository.findById(demo.getId()))
                 .isPresent()
