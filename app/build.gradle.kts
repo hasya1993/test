@@ -11,12 +11,12 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:3.2.4")
 }
 
-dependencyLocking {
-    lockAllConfigurations()
-    lockMode = LockMode.STRICT
-}
-
 application {
     // Define the main class for the application.
     mainClass = "org.example.app.App"
+}
+
+dependencyLocking {
+    lockAllConfigurations()
+    lockMode = LockMode.STRICT
 }
