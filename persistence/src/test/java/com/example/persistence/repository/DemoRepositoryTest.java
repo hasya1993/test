@@ -1,10 +1,10 @@
-package org.example.app.repository;
+package com.example.persistence.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.example.app.PostgresTestContainer;
-import org.example.app.TestApplication;
-import org.example.app.entity.Demo;
+import com.example.persistence.PostgresTestContainer;
+import com.example.persistence.TestApplication;
+import com.example.persistence.entity.Demo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
