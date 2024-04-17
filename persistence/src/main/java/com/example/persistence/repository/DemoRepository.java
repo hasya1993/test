@@ -1,6 +1,6 @@
-package org.example.app.repository;
+package com.example.persistence.repository;
 
-import org.example.app.entity.Demo;
+import com.example.persistence.entity.Demo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

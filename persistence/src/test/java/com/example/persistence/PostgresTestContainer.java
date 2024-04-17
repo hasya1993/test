@@ -1,4 +1,4 @@
-package org.example.app;
+package com.example.persistence;
 
 import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
